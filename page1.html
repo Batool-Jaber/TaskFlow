@@ -1,156 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskFlow</title>
-    <style>
-       * { box-sizing: border-box; }
-      body {
-       margin: 30px;
-        background-color: #f5f6ff;
-        color: #001e3b;
-        font-family: Arial, sans-serif;
-      }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 30px;
+      background-color: #f5f6ff;
+      color: #001e3b;
+      font-family: Arial, sans-serif;
+    }
+
+    .header {
+      background-color: #001e3b;
+      color: #fff;
+      padding: 20px 40px;
+      border-radius: 20px 20px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .main {
+      background-color: #fff;
+      border: 3px solid #c1c3c5;
+      border-top: none;
+      border-radius: 0 0 20px 20px;
+      padding: 20px;
+
+    }
+
+    .sublogo {
+      color: #c1c3c5;
+      font-family: Arial, sans-serif;
+    }
+
+    .task {
+      background-color: #f5f6ff;
+      border: 1px solid #fff;
+      border-radius: 20px;
+      width: 100%;
+      padding: 20px;
+
+    }
+
+    .all.task {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 50px;
+      background-color: #fff;
+      border: none;
+
+    }
+
+    .num {
+      font-size: 50px;
+      font-weight: bold;
+      color: #001e3b;
+      margin: 0;
+    }
+
+    .search.task input {
+      width: 82%;
+      height: 60px;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid #c1c3c5;
+    }
+
+    .search.task {
+      background-color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .filter {
+      width: 17%;
+      height: 60px;
+      padding: 10px;
+      margin-left: 5px;
+      border-radius: 10px;
+      border: 1px solid #c1c3c5;
+      color: #848688;
+    }
+
+    .check.list.task {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 20px;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #c1c3c5;
+      color: #001e3b;
+      width: 97%;
+    }
+
+    .add.task {
+      background-color: #001e3b;
+      color: #fff;
+      height: 60px;
+      padding: 10px;
+      margin-left: 5px;
+      border-radius: 10px;
+      border: 1px solid #c1c3c5;
+      width: 17%;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      color: #848688;
+    }
+
+
+
+    @media (max-width: 770px) {
       .header {
-        background-color: #001e3b;
-        color: #fff;
-        padding: 20px 40px;
-        border-radius: 20px 20px 0 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: Arial, sans-serif;
+        padding: 15px 20px;
+        font-size: 14px;
       }
-      .main{
-        background-color: #fff;
-        border: 3px solid #c1c3c5;
-        border-top: none;
-        border-radius: 0 0 20px 20px;
-        padding: 20px ;
-        
-      }
-      .sublogo {
-        color: #c1c3c5;
-        font-family: Arial, sans-serif;
-      }
-      .task {
-        background-color: #f5f6ff;
-        border: 1px solid #fff;
-        border-radius: 20px;
-        margin-bottom: 20px;
-        width: 100%;
-       padding: 20px;
-    
-      }
+
       .all.task {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 50px;
-        background-color:#fff ;
-        border: none;
-       
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
-      .num {
-        font-size: 50px;
-        font-weight: bold;
-        color: #001e3b;
-        margin: 0;
-      }
-      .search.task input {
-        width: 82%;
-        height: 60px;
-        padding: 10px;
-        border-radius: 10px;
-        border: 1px solid #c1c3c5;
-      }
-      .search.task {
-        background-color: #ffffff;
-      }
+
       .filter {
-        width: 17%;
-        height: 60px;
-        padding: 10px;
-        margin-left: 5px;
-        border-radius: 10px;
-        border: 1px solid #c1c3c5;
-        color: #848688;
+        width: 40%;
       }
+
       .check.list.task {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: #ffffff;
-        border-radius: 20px;
-        margin-left: 20px;
-         border: 1px solid #c1c3c5;
-        color: #001e3b;
-        width: 97%;
+        width: 89%;
       }
-      .footer {
-        text-align: center;
-        margin-top: 20px;
-        color: #848688;
-      }
-    </style>
+    }
+  </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="header">
-            <h1 class="logo">TaskFlow</h1>
-            <h4 class="sublogo">PERSONAL DASHBOARD</h4>
-        </div>
-  </header>
-    <main>
-        <div class="main">
-        <div class="all task">
-        <div Class="task">
-            <h3>TOTAL TASKS</h3>
-            <span class="num">00</span>
-        </div>
-         <div Class="task">
-            <h3>ACTIVE TASKS</h3>
-            <span class="num">00</span>
-        </div>
-         <div Class="task">
-            <h3>COMPLETED</h3>
-            <span class="num">00</span>
-        </div>
-
- 
- 
+  <header>
+    <div class="header">
+      <h1 class="logo">TaskFlow</h1>
+      <h4 class="sublogo">PERSONAL DASHBOARD</h4>
     </div>
+  </header>
+  <main>
+    <div class="main">
+      <div class="all task">
+        <div Class="task">
+          <h3>TOTAL TASKS</h3>
+          <span class="num">02</span>
+        </div>
+        <div Class="task">
+          <h3>ACTIVE TASKS</h3>
+          <span class="num">00</span>
+        </div>
+        <div Class="task">
+          <h3>COMPLETED</h3>
+          <span class="num">00</span>
+        </div>
+      </div>
+
+      <div class="search task">
+
+        <input type="text" class="task-input" placeholder="Add new task ...">
+        <select class="filter">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button class="add task">Add Task</button>
+      </div>
 
 
-    <div class="search task">
+      <div class="search task">
         <input type="text" placeholder="Search tasks ...">
         <select class="filter">
-            <option value="all" selected>All tasks</option>
-            <option value="active">Active</option>
-            <option value="completed">Completed</option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
+          <option value="all" selected>All tasks</option>
+          <option value="active">Active</option>
+          <option value="completed">Completed</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
         </select>
-    </div>
+      </div>
 
-    <div class="check list task">
-
+      <div class="check list task">
         <span>Create landing page layout</span>
-         <span style="color: #848688;">High</span>
-      
-    </div>
-    <div class="check list task">
-        <span>Review JavaScript documentation</span>
-         <span style="color: #848688;">Low</span>
-      
-    </div>
-        </div>
-    </main>
+        <span style="color: #848688;">HIGH</span>
+      </div>
 
-    <footer>
-      <p class="footer">Illustrative interface concept; visual design is flexible.</p>
-    </footer>
+
+      <div class="check list task">
+        <span>Review JavaScript documentation</span>
+        <span style="color: #848688;">LOW</span>
+      </div>
+
+
+
+      <div class="task-list">
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p class="footer">Illustrative interface concept; visual design is flexible.</p>
+  </footer>
+
+
+  <script>
+    let taskInput = document.querySelector('.task-input');
+    let addTaskButton = document.querySelector('.add.task');
+    let taskList = document.querySelector('.task-list');
+    let prioritySelect = document.querySelector('.search.task .filter');
+    let totalTasks = document.querySelector('.all.task .num');
+    addTaskButton.addEventListener('click', function () {
+      let taskText = taskInput.value;
+      let selectedPriority = prioritySelect.value;
+
+      if (taskText === '') {
+        alert('Please enter a task!');
+        return;
+      }
+      
+      let taskDiv = document.createElement('div');
+      let taskName = document.createElement('span');
+      let taskPriority = document.createElement('span');
+      
+      taskName.textContent = taskText;
+      taskPriority.textContent =
+        selectedPriority.toUpperCase()
+      taskPriority.style.color = '#848688';
+      
+      taskDiv.classList.add('check', 'list', 'task');
+      
+      taskDiv.appendChild(taskName);
+      taskDiv.appendChild(taskPriority);
+      taskList.appendChild(taskDiv);
+      
+      let count = parseInt(totalTasks.textContent);
+      count++;
+      totalTasks.textContent = count < 10 ? '0' + count : count;
+      
+      taskInput.value = '';
+    });
+
+
+  </script>
 </body>
+
 </html>
