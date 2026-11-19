@@ -115,6 +115,32 @@
       width: 17%;
     }
 
+    .task-checkbox {
+      appearance: none;
+      width: 25px;
+      height: 25px;
+      border: 2px solid #3979B8;
+      border-radius: 50%;
+      background-color: white;
+      cursor: pointer;
+      margin-right: 15px;
+      
+    }
+
+    .task-checkbox:checked {
+      border-color: #278C78;
+      background-color: white;
+    }
+
+
+    .task-checkbox:checked::after {
+      
+      content: "✓";
+      color: #278C78;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
     .footer {
       text-align: center;
       margin-top: 20px;
@@ -153,6 +179,7 @@
       <h4 class="sublogo">PERSONAL DASHBOARD</h4>
     </div>
   </header>
+
   <main>
     <div class="main">
       <div class="all task">
@@ -162,11 +189,11 @@
         </div>
         <div Class="task">
           <h3>ACTIVE TASKS</h3>
-          <span class="num">00</span>
+          <span class="num">01</span>
         </div>
         <div Class="task">
           <h3>COMPLETED</h3>
-          <span class="num">00</span>
+          <span class="num">01</span>
         </div>
       </div>
 
@@ -195,13 +222,19 @@
       </div>
 
       <div class="check list task">
-        <span>Create landing page layout</span>
+        <div>
+          <input type="checkbox" class="task-checkbox">
+          <span>Create landing page layout</span>
+        </div>
         <span style="color: #848688;">HIGH</span>
       </div>
 
 
       <div class="check list task">
-        <span>Review JavaScript documentation</span>
+        <div>
+          <input type="checkbox" class="task-checkbox" checked>
+          <span>Review JavaScript documentation</span>
+        </div>
         <span style="color: #848688;">LOW</span>
       </div>
 
@@ -225,6 +258,7 @@
     let taskList = document.querySelector('.task-list');
     let prioritySelect = document.querySelector('.search.task .filter');
     let totalTasks = document.querySelector('.all.task .num');
+    let checkboxes = document.querySelectorAll('.task-checkbox');
     addTaskButton.addEventListener('click', function () {
       let taskText = taskInput.value;
       let selectedPriority = prioritySelect.value;
@@ -233,27 +267,39 @@
         alert('Please enter a task!');
         return;
       }
-      
+
       let taskDiv = document.createElement('div');
+      let taskchildDiv = document.createElement('div');
+      let checkbox = document.createElement('input');
       let taskName = document.createElement('span');
       let taskPriority = document.createElement('span');
       
+      checkbox.type = 'checkbox';
       taskName.textContent = taskText;
       taskPriority.textContent =
         selectedPriority.toUpperCase()
       taskPriority.style.color = '#848688';
-      
+
       taskDiv.classList.add('check', 'list', 'task');
-      
-      taskDiv.appendChild(taskName);
+      checkbox.classList.add('task-checkbox');
+
+      taskchildDiv.appendChild(checkbox);
+      taskchildDiv.appendChild(taskName);
+      taskDiv.appendChild(taskchildDiv);
       taskDiv.appendChild(taskPriority);
       taskList.appendChild(taskDiv);
-      
+
       let count = parseInt(totalTasks.textContent);
       count++;
       totalTasks.textContent = count < 10 ? '0' + count : count;
-      
+
+      let countActive = document.querySelector('.all.task .num:nth-child(2)');
+      let activeCount = parseInt(countActive.textContent);
+
+      countActive.textContent= count < 10 ? '0' + count : count
+
       taskInput.value = '';
+    
     });
 
 
